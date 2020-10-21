@@ -58,6 +58,47 @@ void MergeSort(int arr[],int start,int end){
     }
     
 }
+
+
+void swap(int a, int b){
+    int  temp=a;
+    a = b;
+    b = temp;
+    
+}
+
+int patrition (int Arr[], int l, int r){
+    int pivot = Arr[r];
+    int i  = l-1; // i starts from -1
+    
+    for(int j=l; j<r; j++){ // j starts from begining to before pivot as pivot is last index
+        if(Arr[j]<pivot){
+            i++;
+            int temp = Arr[i];
+                Arr[i] = Arr[j];
+                Arr[j] = temp;
+        }
+        
+        
+    }    
+     int temp = Arr[i + 1];
+        Arr[i + 1] = Arr[r];
+        Arr[r] = temp;
+    return i+1;
+}
+
+void QuickSort(int Arr[], int l, int r){
+    if(r<=l){
+        return;
+      }
+      int p =  patrition(Arr, l, r);
+      QuickSort(Arr, l, p-1);  //left side of patrition
+      QuickSort(Arr,p+1,r );    // right side of patrition 
+   
+}
+
+
+
 int main()
 {
    int arr []={4,2,3,7,5};   
@@ -67,7 +108,7 @@ int main()
     
    
    do{
-        cout<<"Choose sorting algorithm 1: Merge Sort 4: Print Array "<<endl;
+        cout<<"Choose sorting algorithm 1: Merge Sort \n2: Heap Sort \n3: Quick Sort\n4: Print Array "<<endl;
         cin>>n;
        switch(n){
            
@@ -76,7 +117,9 @@ int main()
                 break;
            case 2: //Heap sorting  nlogn
                 break;
-           case 3: //quick sorting nlogn
+           case 3: //quick sorting nlogn best one 
+                
+                QuickSort(arr, 0, arr_size-1);
                 break;
            case 4: 
                 printArray(arr,arr_size);
