@@ -4,7 +4,7 @@
 using namespace std;
 
 
-
+// Merge Sort Algorith implementation
 void Merge(int A[], int start,int middle,int end){
     
     int n1 = middle-start+1; // plus 1 because our array starts from 0 
@@ -60,13 +60,8 @@ void MergeSort(int arr[],int start,int end){
 }
 
 
-void swap(int a, int b){
-    int  temp=a;
-    a = b;
-    b = temp;
-    
-}
 
+//// quick sort algorithm implementation 
 int patrition (int Arr[], int l, int r){
     int pivot = Arr[r];
     int i  = l-1; // i starts from -1
@@ -97,18 +92,47 @@ void QuickSort(int Arr[], int l, int r){
    
 }
 
+// Counting Sort Algorithm Implementation 
+
+void CountingSort(int ArrA[], int k,int s){ // int k -> is maximum value of array 
+
+    int n = s; //size of array
+    int ArrB[n];   
+    int count[k];
+
+    for(int i =0; i< k; i++) //initillizing to 0 
+        count[i] = 0;
+
+    for(int i =0;i<n;i++) // counting values and adding +1 
+         ++count[ArrA[i]];
+    
+       
+    for(int i=1; i<k;i++) // adding each number accumalativly 
+        count[i] +=count[i-1];
+
+    for(int i =n-1 ; i>=0 ; i--){  
+        ArrB[count[ArrA[i]]-1] = ArrA[i];
+        --count[ArrA[i]];
+    }     
+    
+    for(int i = 0; i<n; i++)
+        ArrA[i] = ArrB[i];
+
+
+
+}
 
 
 int main()
 {
-   int arr []={4,2,3,7,5};   
+   int arr []={4,5,3,7,5};   
     int arr_size = sizeof(arr) / sizeof(arr[0]); 
    int n;
    
     
    
    do{
-        cout<<"Choose sorting algorithm 1: Merge Sort \n2: Heap Sort \n3: Quick Sort\n4: Print Array "<<endl;
+        cout<<"Choose sorting algorithm \n1: Merge Sort \n2: Heap Sort \n3: Quick Sort\n4: Counting Sort \n5: Print Array "<<endl;
         cin>>n;
        switch(n){
            
@@ -122,7 +146,10 @@ int main()
                 QuickSort(arr, 0, arr_size-1);
                 break;
            case 4: 
-                printArray(arr,arr_size);
+                CountingSort(arr,8,arr_size);
+                break;
+           case 5:
+               printArray(arr,arr_size);
                 break;
            default:
              break;
