@@ -1,6 +1,6 @@
 
 #include <iostream>
-
+#include <vector> 
 using namespace std;
 
 
@@ -39,7 +39,7 @@ void Merge(int A[], int start,int middle,int end){
     
 }
 
-void printArray(int A[], int size) 
+void printArray(float A[], int size) 
 { 
     for(int i = 0; i < size; i++) 
         cout << A[i] << " "; 
@@ -121,18 +121,39 @@ void CountingSort(int ArrA[], int k,int s){ // int k -> is maximum value of arra
 
 
 }
-
-
+void bucketSort(float arr[], int n) 
+{ 
+    // 1) Create n empty buckets 
+    vector<float> b[n]; 
+  
+    // 2) Put array elements in different buckets 
+    for (int i = 0; i < n; i++) { 
+        int bi = n * arr[i]; // Index in bucket 
+        b[bi].push_back(arr[i]); 
+    } 
+  
+    // 3) Sort individual buckets 
+    for (int i = 0; i < n; i++) 
+        sort(b[i].begin(), b[i].end()); 
+  
+    // 4) Concatenate all buckets into arr[] 
+    int index = 0; 
+    for (int i = 0; i < n; i++) 
+        for (int j = 0; j < b[i].size(); j++) 
+            arr[index++] = b[i][j]; 
+} 
 int main()
 {
-   int arr []={4,5,3,7,5};   
+   int arr []={4,5,3,7,5};  
+   float arr1[] = { 0.897, 0.565, 0.656, 0.1234, 0.665, 0.3434 };  
+   int arr_size1 = sizeof(arr1) / sizeof(arr1[0]); 
     int arr_size = sizeof(arr) / sizeof(arr[0]); 
    int n;
    
     
    
    do{
-        cout<<"Choose sorting algorithm \n1: Merge Sort \n2: Heap Sort \n3: Quick Sort\n4: Counting Sort \n5: Print Array "<<endl;
+        cout<<"Choose sorting algorithm \n1: Merge Sort \n2: Heap Sort \n3: Quick Sort\n4: Counting Sort \n5: Bucket Sorting \n6: Print Array "<<endl;
         cin>>n;
        switch(n){
            
@@ -148,8 +169,12 @@ int main()
            case 4: 
                 CountingSort(arr,8,arr_size);
                 break;
+
            case 5:
-               printArray(arr,arr_size);
+               bucketSort(arr1,arr_size1); 
+               break;
+           case 6:
+               printArray(arr1,arr_size);
                 break;
            default:
              break;
