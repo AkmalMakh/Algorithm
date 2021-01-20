@@ -1,6 +1,7 @@
 
 #include <iostream>
 #include <vector> 
+#include <fstream>
 using namespace std;
 
 
@@ -39,7 +40,7 @@ void Merge(int A[], int start,int middle,int end){
     
 }
 
-void printArray(float A[], int size) 
+void printArray(int A[], int size) 
 { 
     for(int i = 0; i < size; i++) 
         cout << A[i] << " "; 
@@ -144,7 +145,7 @@ void bucketSort(float arr[], int n)
 } 
 int main()
 {
-   int arr []={4,5,3,7,5};  
+   int arr []={4,5,3,7,1,5,2,0};  
    float arr1[] = { 0.897, 0.565, 0.656, 0.1234, 0.665, 0.3434 };  
    int arr_size1 = sizeof(arr1) / sizeof(arr1[0]); 
     int arr_size = sizeof(arr) / sizeof(arr[0]); 
@@ -174,7 +175,7 @@ int main()
                bucketSort(arr1,arr_size1); 
                break;
            case 6:
-               printArray(arr1,arr_size);
+               printArray(arr,arr_size);
                 break;
            default:
              break;
