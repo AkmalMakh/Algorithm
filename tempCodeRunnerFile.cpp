@@ -1,2 +1,1 @@
-
-        comp++;
+comp = r - l;
